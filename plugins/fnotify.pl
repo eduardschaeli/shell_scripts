@@ -29,7 +29,7 @@ $VERSION = '0.0.3';
 
 # !! Please set the variables (don't forget to escape "\" the "@" symbol like de example) !!
 my $EMAIL = "YourUserName\@gmail.com";
-my $SSMTP = "/usr/sbin/sendmail";
+my $MAIL = "/usr/bin/mail";
 
 #--------------------------------------------------------------------
 # Private message parsing
@@ -62,7 +62,7 @@ sub filewrite {
         open(FILE,">>$ENV{HOME}/.irssi/fnotify");
 	print FILE $date . $text . "\n\n";
         close (FILE);
-	my $mail=`echo "Subject: IRSSI"|cat - $ENV{HOME}/.irssi/fnotify|$SSMTP $EMAIL`;
+  my $mail=`cat $ENV{HOME}/.irssi/fnotify|$MAIL -s "Subject: IRSSI" $EMAIL`;
 }
 
 #--------------------------------------------------------------------
